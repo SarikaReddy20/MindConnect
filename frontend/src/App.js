@@ -9,6 +9,7 @@ import Appointments from "./Appointments";
 import Chat from "./Chat";
 import PHQ9Form from "./PHQ9Form";
 import SelfHelp from "./SelfHelp";
+import HomePage from "./HomePage"
 
 // Simple Auth Check
 const PrivateRoute = ({ children }) => {
@@ -20,6 +21,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

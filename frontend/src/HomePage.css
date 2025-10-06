@@ -1,0 +1,261 @@
+/* HomePage.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f9;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Navigation Bar (existing styles) --- */
+.navbar {
+  background-color: #0056b3;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.navbar-actions .btn {
+  margin-left: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: white;
+  border: 1px solid white;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  border-color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* --- Hero Section (existing styles) --- */
+.hero-section {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: #e6f2ff;
+  color: #333;
+}
+
+.hero-section h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #0056b3;
+}
+
+.hero-section p {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #555;
+}
+
+.btn-cta {
+  background-color: #007bff;
+  color: white;
+  padding: 0.9rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.btn-cta:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* --- NEW SECTION: Mission Statement --- */
+.mission-section {
+    padding: 2rem;
+    text-align: center;
+    background-color: #ffffff; /* White background */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mission-section p {
+    font-size: 1.1rem;
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #495057;
+    line-height: 1.6;
+    border-left: 4px solid #007bff;
+    padding-left: 20px;
+}
+
+/* --- Features Section (existing styles) --- */
+.features-section {
+  padding: 4rem 2rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.features-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  color: #0056b3;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background-color: #f0f9ff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: left;
+  border: 1px solid #cce0ff;
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+/* --- NEW SECTION: How It Works --- */
+.how-it-works-section {
+    padding: 4rem 2rem;
+    background-color: #f4f7f9; /* Light grey/blue background */
+    text-align: center;
+}
+
+.how-it-works-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: #0056b3;
+}
+
+.how-it-works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.step-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    text-align: left;
+}
+
+.step-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #007bff;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #f4f7f9;
+}
+
+.step-card h3 {
+    margin-top: 20px;
+    margin-bottom: 0.5rem;
+    color: #0056b3;
+}
+
+.step-card p {
+    color: #666;
+}
+
+/* --- Testimonials Section (existing styles) --- */
+.testimonials-section {
+  background-color: #ffffff; /* Changed from light blue-grey to white to separate from "How It Works" */
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.testimonials-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  color: #0056b3;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  background-color: #f0f9ff; /* Light blue background for testimonials */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-top: 5px solid #007bff;
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.testimonial span {
+  font-weight: 600;
+  color: #007bff;
+  display: block;
+  margin-top: 10px;
+}
+
+/* --- Footer (existing styles) --- */
+.footer {
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #0056b3;
+  color: white;
+  font-size: 0.9rem;
+}
