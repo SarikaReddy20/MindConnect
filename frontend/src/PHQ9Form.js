@@ -1,6 +1,7 @@
 // frontend/src/pages/PHQ9Form.js
 import React, { useState } from "react";
 import axios from "axios";
+import { saveAs } from 'file-saver';
 
 // PHQ-9 Questions
 const questions = [
@@ -36,9 +37,9 @@ const styles = {
   questionGroup: {
     marginBottom: "20px",
     padding: "15px",
-    border: "1px solid #cce0ff", // Light blue border
+    border: "1px solid #cce0ff",
     borderRadius: "8px",
-    backgroundColor: "#f4f7f9", // Very light blue-grey background
+    backgroundColor: "#f4f7f9",
   },
   questionText: {
     fontWeight: "600",
@@ -59,7 +60,7 @@ const styles = {
     width: "100%",
     padding: "15px",
     marginTop: "25px",
-    backgroundColor: "#007bff", // Primary blue button
+    backgroundColor: "#007bff",
     color: "white",
     border: "none",
     borderRadius: "8px",
@@ -72,7 +73,7 @@ const styles = {
     marginTop: "30px",
     padding: "20px",
     borderRadius: "8px",
-    backgroundColor: "#e6f2ff", // Lightest blue result background
+    backgroundColor: "#e6f2ff",
     border: "2px solid #007bff",
     textAlign: "center",
   },
@@ -84,12 +85,24 @@ const styles = {
   resultText: {
     color: "#333",
     fontSize: "1.1em",
-  }
+  },
+  downloadButton: {
+    marginTop: "15px",
+    padding: "12px 25px",
+    backgroundColor: "#28a745",
+    color: "#fff",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "15px",
+  },
 };
 
 const PHQ9Form = () => {
   const [answers, setAnswers] = useState(Array(9).fill(0));
   const [result, setResult] = useState(null);
+  const [resultId, setResultId] = useState(null);
 
   const handleChange = (index, value) => {
     const newAnswers = [...answers];
@@ -105,27 +118,45 @@ const PHQ9Form = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setResult(res.data);
+      setResultId(res.data._id);
     } catch (err) {
       console.error(err);
-      // Optional: Add a user-friendly error message state
+    }
+  };
+
+  const handleDownload = async (id) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/phq9/download/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (!response.ok) throw new Error("Download failed");
+
+      const blob = await response.blob();
+      saveAs(blob, "PHQ9_Report.docx");
+    } catch (error) {
+      console.error("Error downloading file:", error);
     }
   };
 
   return (
     <div style={styles.container}>
       <h2 style={styles.header}>PHQ-9 Evaluation 🧠</h2>
-      <p style={{ textAlign: 'center', marginBottom: '20px', color: '#555' }}>
-        Please answer the following questions based on how often you have been bothered by them over the last **two weeks**.
+      <p style={{ textAlign: "center", marginBottom: "20px", color: "#555" }}>
+        Please answer the following questions based on how often you have been bothered by them over the last <b>two weeks</b>.
       </p>
-      
+
       <form onSubmit={handleSubmit}>
         {questions.map((q, idx) => (
           <div key={idx} style={styles.questionGroup}>
             <p style={styles.questionText}>
               {idx + 1}. {q}
             </p>
-            <select 
-              value={answers[idx]} 
+            <select
+              value={answers[idx]}
               onChange={(e) => handleChange(idx, e.target.value)}
               style={styles.select}
             >
@@ -143,12 +174,19 @@ const PHQ9Form = () => {
 
       {result && (
         <div style={styles.resultContainer}>
-          <h3 style={{...styles.score, margin: '10px 0'}}>
+          <h3 style={{ ...styles.score, margin: "10px 0" }}>
             Total Score: {result.score}
           </h3>
           <p style={styles.resultText}>
-            Interpretation: <span style={{ fontWeight: 'bold' }}>{result.result}</span>
+            Interpretation:{" "}
+            <span style={{ fontWeight: "bold" }}>{result.result}</span>
           </p>
+
+          <button onClick={() => handleDownload(result._id)}>
+            Download Report (.docx)
+          </button>
+
+
         </div>
       )}
     </div>

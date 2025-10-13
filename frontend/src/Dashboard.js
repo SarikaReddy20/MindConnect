@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PatientList from "./PatientList";
-import ProgressChart from "./ProgressChart";
 import FeedbackView from "./FeedbackView";
 import FeedbackForm from "./FeedbackForm";
 
@@ -169,14 +168,14 @@ const Dashboard = () => {
               🛠️ Self-Help Tools & Journaling
             </button>
           </li>
-          <li style={styles.menuItem}>
-            <button
-              onClick={() => navigate("/chat")}
-              style={{ ...styles.button, ...styles.primaryButton }}
-            >
-              💬 Chat With Your Therapist
-            </button>
-          </li>
+            <li style={styles.menuItem}>
+              <button
+                onClick={() => navigate("/dashboard")}
+                style={{ ...styles.button, ...styles.primaryButton }}
+              >
+                👥 View History
+              </button>
+            </li>
           <li style={styles.menuItem}>
             <button
               onClick={() => setView("feedback")}
